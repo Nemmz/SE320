@@ -1,7 +1,7 @@
 #SE320 Software Construction
 
 This repo will serve as referencing for later projects as well as a documentation for this class along with the projects associated with them.
-From this point file names will serve as bookmarks for what projects do what along with what the assignment involved.
+From this point file names will serve as bookmarks for what projects do what along with what the assignment involved. 3rd Party libraries will be referenced if they were added to the respected project but otherwise will only need Python (3.10 for my case) to be ran.
 
 Homework 1:
 infinitegenerator.py - 
