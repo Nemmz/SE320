@@ -7,15 +7,18 @@
 #            allowed me to get passed robot.txt problem.
 # Version 1.0: Initial Retrival of Data
 """
-
+from posix import WCONTINUED
+from sys import argv
 import requests
+import statistics
 from requests import get
 from datetime import date
 from json import loads
 from urllib3.exceptions import HTTPError
 
-"""Download data retrieves online data from Nasdaq on a ticker set by the user and return the dictionary of values"""
+
 def download_data(ticker: str) -> dict:
+    """Downloads data retrieves data from Nasdaq on a ticker set by the user and return the dictionary of values"""
     today = date.today()  # initializes date as today from the time library.
     base_url = "https://api.nasdaq.com"
     start = str(today.replace(year=today.year - 5))
@@ -39,6 +42,36 @@ def download_data(ticker: str) -> dict:
     except Exception as e: # if the code produces an error such as undefined libraries
         print(f"Error: {e}")
 
+
+def extract_data(response: dict) -> dict:
+    """Converts the downloaded data to a dict that presents the respective data fields."""
+    data = []
+    try:
+        for list in response['data']['tradesTable']['rows']:
+            price = float(list['close'].replace('$',''))
+            data.append(price)
+    except TypeError as e: print(f"TypeError: {e}")
+    if not data:
+        print("Error: No valid data available.")  # If data is not found or poor ticker value
+        return {}
+    return {
+        "Name:": response['data']['symbol'],  # name of ticker
+        "Min:": min(data),  # minimum value of close value
+        "Max:": max(data),  # max value of close value
+        "Avg:": sum(data) / len(data),  # average value data
+        "Median:": statistics.median(data),  # median value
+    }
+
+
+"""
+for i in argv[1:]:
+    if(len(argv) < 1):
+        print("No tickers entered.")
+    else
+        #fetch data here
+"""
+
 ticker = "AAPL" # AAPL is hardcoded ticker until user input is accepted
 ticker = ticker.upper() # set the tick to all upper case letters
-print(download_data(ticker)) # prints the dict of data from Nasdaq
+#print(download_data(ticker)) # prints the dict of data from Nasdaq
+print(extract_data(download_data(ticker)))
