@@ -11,5 +11,8 @@ Homework 2:
 jarrells_sensors.py - 
 This code allowed for understanding of how OOP in Python is done with classes, inheritance, polymorphism, and so on with the examples of sensors. 
 
+Homework 3: 
+stockmarket_data.py
+This code grabs data from Nasdaq.com in order to format and calculate wanted data such as min/max/median/avgerage on requested tickers.
 
   
