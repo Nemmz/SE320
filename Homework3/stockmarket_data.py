@@ -7,13 +7,11 @@
 #            allowed me to get passed robot.txt problem.
 # Version 1.0: Initial Retrival of Data
 """
-from posix import WCONTINUED
 from sys import argv
 import requests
 import statistics
-from requests import get
+import json
 from datetime import date
-from json import loads
 from urllib3.exceptions import HTTPError
 
 
@@ -62,16 +60,26 @@ def extract_data(response: dict) -> dict:
         "Median:": statistics.median(data),  # median value
     }
 
+def save_data(data: dict, filename="stocks.json") -> None:
+    """Appends stocks data to JSON file."""
+    with open(filename, "w") as file:
+        file.write(json.dumps(data, indent=4, sort_keys=True))
 
-"""
-for i in argv[1:]:
-    if(len(argv) < 1):
-        print("No tickers entered.")
-    else
-        #fetch data here
-"""
+if(len(argv) < 2):
+    print("No tickers entered.")
+else:
+    stock_results = {}
+    for ticker in argv[1:]:
+        ticker = ticker.upper()  # set the tick to all upper case letters
+        data = download_data(ticker)
+        if data:
+            stock_data = extract_data(data)
+            if stock_data:
+                stock_results[ticker] = stock_data
 
-ticker = "AAPL" # AAPL is hardcoded ticker until user input is accepted
-ticker = ticker.upper() # set the tick to all upper case letters
+    if stock_results:
+        save_data(stock_results)
+        print("Successfully saved stock results to stock.json.")
+
 #print(download_data(ticker)) # prints the dict of data from Nasdaq
-print(extract_data(download_data(ticker)))
+#print(extract_data(download_data(ticker)))
