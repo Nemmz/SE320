@@ -6,7 +6,10 @@
 # Resources: Use ChatGPT to figure out the header situation and how to implement it which in turn
 #            allowed me to get passed robot.txt problem.
 # Version 1.0: Initial Retrival of Data
+# Version 1.1: Formatting of Data
+# Version 1.2: Output of Data
 """
+
 from sys import argv
 import requests
 import statistics
@@ -45,7 +48,7 @@ def extract_data(response: dict) -> dict:
     """Converts the downloaded data to a dict that presents the respective data fields."""
     data = []
     try:
-        for list in response['data']['tradesTable']['rows']:
+        for list in response['data']['tradesTable']['rows']:  # data -> tradesTable -> rows
             price = float(list['close'].replace('$',''))
             data.append(price)
     except TypeError as e: print(f"TypeError: {e}")
@@ -69,7 +72,7 @@ if(len(argv) < 2):
     print("No tickers entered.")
 else:
     stock_results = {}
-    for ticker in argv[1:]:
+    for ticker in argv[1:]: # identifies usage of the command line for python calls.
         ticker = ticker.upper()  # set the tick to all upper case letters
         data = download_data(ticker)
         if data:
@@ -80,6 +83,3 @@ else:
     if stock_results:
         save_data(stock_results)
         print("Successfully saved stock results to stock.json.")
-
-#print(download_data(ticker)) # prints the dict of data from Nasdaq
-#print(extract_data(download_data(ticker)))
