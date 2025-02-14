@@ -15,4 +15,6 @@ Homework 3:
 stockmarket_data.py
 This code grabs data from Nasdaq.com in order to format and calculate wanted data such as min/max/median/avgerage on requested tickers.
 
-  
+Homework 4:
+shaky_service_jarrells.py
+For this homework we added a delay to the function using decorators and reduce the strain on functions that fail.
