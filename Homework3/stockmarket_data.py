@@ -56,7 +56,7 @@ def extract_data(response: dict) -> dict:
         print("Error: No valid data available.")  # If data is not found or poor ticker value
         return {}
     return {
-        "Name:": response['data']['symbol'],  # name of ticker
+        #"Name:": response['data']['symbol'],  # name of ticker
         "Min:": min(data),  # minimum value of close value
         "Max:": max(data),  # max value of close value
         "Avg:": sum(data) / len(data),  # average value data
