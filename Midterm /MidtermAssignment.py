@@ -42,7 +42,6 @@ def validate_amount(func):
     return wrapper
 
 
-
 class BankAccount:
     def __init__(self, account_number: str, owner_name: str):
         self.account_number = account_number
@@ -66,7 +65,6 @@ class BankAccount:
             self.transactions.append(f"Withdrawal: ${amount}")
         else:
             raise ValueError("Insufficient funds")
-
 
     def get_transaction_history(self) -> List[str]:
         """Return list of all transactions"""
