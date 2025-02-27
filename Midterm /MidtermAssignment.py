@@ -73,8 +73,6 @@ class BankAccount:
         return self.transactions
 
 
-
-
 # Create account
 account = BankAccount("12345", "John Doe")
 
