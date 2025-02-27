@@ -18,3 +18,7 @@ This code grabs data from Nasdaq.com in order to format and calculate wanted dat
 Homework 4:
 shaky_service_jarrells.py
 For this homework we added a delay to the function using decorators and reduce the strain on functions that fail.
+
+Midterm Assignment:
+MidtermAssignment.py
+For this assignment a BankAccount class was created and necessary functions such as deposit, withdraw are implemented with the factor of storing all transactions in a list and be able to return these such transactions.
